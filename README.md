@@ -1,6 +1,6 @@
 # heyyyyyyy mockarena
 
-[![Builds](https://img.shields.io/travis/mrkrstphr/mockarena.svg?style=flat-square&maxAge=2592000)]()
+[![Builds](https://img.shields.io/travis/mrkrstphr/mockarena.svg?style=flat-square&maxAge=2592000)](https://travis-ci.org/mrkrstphr/mockarena)
 
 > A function mocking utility for PHP
 
