@@ -12,11 +12,11 @@ tracked and evaluated.
 ## Example
 
 ```php
-it('should add a login_url filter', function () {
-    $fn = $this->mocker->mock('add_filter');
-    $class = new WPSingleSignOn($this->apiClient->reveal());
+$mocker = new \Mockarena\Mockarena();
+$fn = $mocker->mock('add_filter');
 
-    expect($fn)->to->have->been->called(1);
-    expect($fn)->calls(0)->to->have->arguments('login_url', [$class, 'redirecToProvider'], 10, 2);
-});
+add_filter('login_url', 'some_func');
+
+assert(count($fn->calls) === 1);
+assert($fn->calls[0] == ['login_url', 'some_func']);
 ```
