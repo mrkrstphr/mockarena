@@ -14,6 +14,16 @@ describe(MockFunction::class, function () {
             expect($this->function->calls)->to->have->length(1);
             expect($this->function->calls[0])->to->equal([10, 'asdf']);
         });
+
+        it('should return an expected call return value if one is found', function () {
+            $this->function->calledWith(1, 2, 3)->willReturn('test');
+            
+            $result = $this->function->call(1, 2, 3);
+            expect($result)->to->equal('test');
+
+            $result = $this->function->call(1, 3, 5);
+            expect($result)->to->be->null();
+        });
     });
 
     describe('calledWith()', function () {

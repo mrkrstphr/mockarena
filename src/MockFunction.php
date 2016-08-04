@@ -34,10 +34,20 @@ class MockFunction
 
     /**
      * Log the call to this function.
+     *
+     * @return mixed
      */
     public function call()
     {
         $this->calls[] = func_get_args();
+
+        foreach ($this->expectedCalls as $expectedCall) {
+            if ($expectedCall->callMatches(func_get_args())) {
+                return $expectedCall->getReturnValue();
+            }
+        }
+
+        return null;
     }
 
     /**
