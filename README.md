@@ -19,4 +19,10 @@ add_filter('login_url', 'some_func');
 
 assert(count($fn->calls) === 1);
 assert($fn->calls[0] == ['login_url', 'some_func']);
+
+$fn->calledWith(1, 2)->willReturn(300);
+
+$result = add_filter(1, 2);
+
+assert($result === 300);
 ```

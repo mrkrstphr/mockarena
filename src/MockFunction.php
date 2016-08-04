@@ -19,6 +19,11 @@ class MockFunction
     public $calls = [];
 
     /**
+     * @var array
+     */
+    public $expectedCalls = [];
+
+    /**
      * MockFunction constructor.
      * @param $functionName
      */
@@ -33,5 +38,21 @@ class MockFunction
     public function call()
     {
         $this->calls[] = func_get_args();
+    }
+
+    /**
+     * Logs an expected call to this function.
+     *
+     * @param array ...$args
+     * @return ExpectedCall
+     */
+    public function calledWith(...$args)
+    {
+        $call = new ExpectedCall($this);
+        $call->setArguments($args);
+
+        $this->expectedCalls[] = $call;
+
+        return $call;
     }
 }
