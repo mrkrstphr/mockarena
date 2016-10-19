@@ -22,12 +22,16 @@ describe(Mockarena::class, function () {
         });
 
         it('should reset an existing mock before returning it', function () {
-            Mockarena::$mocks['foop']->calls = [1, 2, 3];
+            $fn = $this->mockarena->mock('foop');
+            $fn->calledWith()->willReturn('fooiiuu');
+
+            foop(); foop();
 
             $fn = $this->mockarena->mock('foop');
 
             expect($fn)->to->be->instanceof(MockFunction::class);
             expect(Mockarena::$mocks['foop']->calls)->to->be->empty();
+            expect(Mockarena::$mocks['foop']->expectedCalls)->to->be->empty();
         });
 
         it('should throw an exception when attempting to mock a defined, non-mocked function', function () {

@@ -76,6 +76,7 @@ class Mockarena
     {
         if ($mock = $this->getMock($functionName)) {
             $mock->calls = [];
+            $mock->expectedCalls = [];
             return $mock;
         }
     }
